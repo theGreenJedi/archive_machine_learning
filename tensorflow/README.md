@@ -5,7 +5,7 @@
 * Operator() can be defined as from simple operators such as tf.add(), tf.mul() to complex operators such as tf.reduce_mean(), tf.train.AdagradOptimizer()  
 * Operator() consists of Variable(), Constant() and Operator()
 * Session.run() can has two kinds of operator(). For example, both tf.reduce_mean() and tf.train.AdagradOptimizer() in RNN  
-
+* Constant() is defined as tf.constant() or any numerical values. 
 
 <br>
 ### Difference between tf.placeholder and tf.Variable
