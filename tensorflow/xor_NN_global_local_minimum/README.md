@@ -1,3 +1,4 @@
-### Confirm global/local minimum from simple neural network for solving XOR problem
+### Confirm global/local minimum from XOR problem
 
 
+![](/image/nn_for_xor.png)
