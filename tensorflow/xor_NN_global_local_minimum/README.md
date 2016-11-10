@@ -1,4 +1,4 @@
 ### Confirm global/local minimum from XOR problem
 
 
-![](/image/nn_for_xor.png)
+![](/image/nn_for_xor.PNG)
