@@ -17,6 +17,10 @@ y = tf.placeholder(tf.float32, shape=[None, 10]
 W = tf.Variable(tf.truncated_normal([dim1, dim2], stddev=0.1))
 ```
 * In Tensorflow, a Variable is a modifiable tensor and neural network parameters (weights and biases) are defined as Variables. Variables are usually initialized as a small random amount. Truncation is done so that the absolute value does not exceed 2 times the standard deviation. If we don't specify the mean and standard deviation of the truncated normal function, default values are 0 and 1, respectively.
+```
+sess = tf.Session()
+```
+* A session object encapsulates the environment in which operation objects are executed and tensor objects are evaluated. We define a new session 'sess' ahead of the training procedure.
 
 
 <br>
@@ -26,14 +30,15 @@ tf.Variable | tf.placeholder
 ------------|---------------
 to be initialized | don't to be initialized
 weights/biases | train/test dataset
-is changed internally via session | is changed externally via feed_dic={}
-
+is modified internally via session | is changed externally via feed_dic={}
+is modified by a predefined operators | is changed by a user preference
 global variable | local variable
 
 * tf.Variable: have to define an initial value when declaring it
 * tf.placeholder: don't have to define an initial value and should be specified at run time with feed_dict argument inside Session.run
 * Both tf.Variable and tf.placeholder can be regarded as a buffer because they all has a capsule such as contant, feed_dict={tf.placeholder: X_train} 
 * tf.Variable seems like a global variable because when after compelting run.session it will be renewed like the global variable.
+* tf.Variable is modified by a predefined operators such as gradientdescent_optimizirs which get the operators involving tf.Variables. Instead, tf.placeholder is changed by a user preference logic via feed_dict every session. 
 * In addition, before using sess.run() for tf.Variable(), we must execute a sess.run(tf.initialize_all_variables()). Just like to notify a setting of variables to session. 
 
 
