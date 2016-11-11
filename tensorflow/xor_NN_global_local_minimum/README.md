@@ -25,4 +25,4 @@ The condition for local minimum is as follows:
 * As you can see code, when we in local minimum, the cost is relatively much higher than in global minimum.
 
 <br>
-This resource is based on EE488C Special Topics in EE <Deep Learning and AlphaGo> Fall 2016, School of EE, KAIST
+> This resource is based on EE488C Special Topics in EE <Deep Learning and AlphaGo> Fall 2016, School of EE, KAIST
