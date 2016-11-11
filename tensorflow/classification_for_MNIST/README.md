@@ -1,25 +1,22 @@
 
-### Variable type of tensorflow diagram
+### MNIST dataset
+* database of handwritten digits 0~9
+* train set: 55000 / validation set: 5000 / test set: 10000
+* each image is gray scale / its dimension is 28 pixels by 28 pixels
 
-![](https://docs.google.com/drawings/d/1qaFys5F7_FqI6FvVpQDGIDl-XJwLGh0x3SoL4BTAbw0/pub?w=480&amp;h=360)
-* Operator() can be defined as from simple operators such as tf.add(), tf.mul() to complex operators such as tf.reduce_mean(), tf.train.AdagradOptimizer()  
-* Operator() consists of Variable(), Constant() and Operator()
-* Session.run() can has two kinds of operator(). For example, both tf.reduce_mean() and tf.train.AdagradOptimizer() in RNN  
-* Constant() is defined as tf.constant() or any numerical values. 
+### Softmax regression
+- Softmax regression or multinomial logistic regression is a generalization of logistic regression to the case where we want to handle multiple classes.
+- Softmax performs component-wise exponential function with normalization. Therefore the output of the softmax layer behaves as a probability mass function (i.e., each output is between 0 and 1 and the sum of all outputs is 1) and indicates the likelihood of each output.
+- Since the model is simple, its performance does not improve much even if we increase the number of epochs. 
 
-<br>
-### Difference between tf.placeholder and tf.Variable
+### 2-layer CNN + dropout
+```
+x_image = tf.reshape(x, [-1, 28, 28, 1])
+```
+First we should reshape the input image x to (batch_size)*28*1. -1 means indefinite, which will be automatically calculated to match the total size, e.g., it becomes equal to the number of examples in a minibatch during training and it becomes equal to the number of examples in the test set during evaluation using the test set. The last dimension indicates the number of channels of an image, i.e., a monochrome image has 1 channel and a full color RGB imgae has 3 channels. 
 
-tf.Variable | tf.placeholder
-------------|---------------
-initial value | no initial value
-contant | feed_dict={tf.placeholder: X_train}
-buffer | buffer
-dynamic | static (fixed)
-weights of a model | train/test dataset
 
-* tf.Variable: have to define an initial value when declaring it
-* tf.placeholder: don't have to define an initial value and should be specified at run time with feed_dict argument inside Session.run
-* Both tf.Variable and tf.placeholder can be regarded as a buffer because they all has a capsule such as contant, feed_dict={tf.placeholder: X_train} 
-* In addition, before using sess.run() for tf.Variable(), we must execute a sess.run(tf.initialize_all_variables()). Just like to notify a setting of variables to session. 
 
+The accuracy of classification gets better as the neural network becomes more complex.
+
+> This resource is based on EE488C Special Topics in EE <Deep Learning and AlphaGo> Fall 2016, School of EE, KAIST
