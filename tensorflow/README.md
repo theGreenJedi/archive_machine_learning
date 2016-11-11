@@ -2,24 +2,41 @@
 ### Variable type of tensorflow diagram
 
 ![](https://docs.google.com/drawings/d/1qaFys5F7_FqI6FvVpQDGIDl-XJwLGh0x3SoL4BTAbw0/pub?w=480&amp;h=360)
+* Placeholder() is regarded as symbolic variables whose values are not specified at the first time.
 * Operator() can be defined as from simple operators such as tf.add(), tf.mul() to complex operators such as tf.reduce_mean(), tf.train.AdagradOptimizer()  
 * Operator() consists of Variable(), Constant() and Operator()
 * Session.run() can has two kinds of operator(). For example, both tf.reduce_mean() and tf.train.AdagradOptimizer() in RNN  
 * Constant() is defined as tf.constant() or any numerical values. 
+
+```
+x = tf.placeholder(tf.float32, shape=[None, 784]
+y = tf.placeholder(tf.float32, shape=[None, 10]
+```
+* In Tensorflow, symbolic manipulations are done to calculate gradient automatically. x and y are symbolic variables whose values are not specified yet. They are place holders for 32-bit floating matrices of sizes None*784 and None*10, respectively. 'None' means unspeficied. It will be specified later when the actual data is fed to x and y when you run sess.run() via feed_dict={x: x_data, y: y_data}. 
+```
+W = tf.Variable(tf.truncated_normal([dim1, dim2], stddev=0.1))
+```
+* In Tensorflow, a Variable is a modifiable tensor and neural network parameters (weights and biases) are defined as Variables. Variables are usually initialized as a small random amount. Truncation is done so that the absolute value does not exceed 2 times the standard deviation. If we don't specify the mean and standard deviation of the truncated normal function, default values are 0 and 1, respectively.
+
 
 <br>
 ### Difference between tf.placeholder and tf.Variable
 
 tf.Variable | tf.placeholder
 ------------|---------------
-initial value | no initial value
-contant | feed_dict={tf.placeholder: X_train}
-buffer | buffer
-dynamic | static (fixed)
-weights of a model | train/test dataset
+to be initialized | don't to be initialized
+weights/biases | train/test dataset
+is changed internally via session | is changed externally via feed_dic={}
+
+global variable | local variable
 
 * tf.Variable: have to define an initial value when declaring it
 * tf.placeholder: don't have to define an initial value and should be specified at run time with feed_dict argument inside Session.run
 * Both tf.Variable and tf.placeholder can be regarded as a buffer because they all has a capsule such as contant, feed_dict={tf.placeholder: X_train} 
+* tf.Variable seems like a global variable because when after compelting run.session it will be renewed like the global variable.
 * In addition, before using sess.run() for tf.Variable(), we must execute a sess.run(tf.initialize_all_variables()). Just like to notify a setting of variables to session. 
 
+
+
+<br>
+> This resource is based on EE488C Special Topics in EE <Deep Learning and AlphaGo> Fall 2016, School of EE, KAIST
