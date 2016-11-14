@@ -82,6 +82,20 @@ Dropout is known to be effective to prevent the neural network from overfitting.
    * ```test_accuracy = accruacy.eval(feed_dict={x:mnist.test.images, y_:mnist.test.labels, keep_prob:1.0})```
 * Note that keep_prob is set to 0.5 during training, but it is set to 1.0 for evaluation because we don't want to drop any units during evaluation.
 
+### Output layer (Second fully connected layer)
+```
+W_fc2 = tf.Variable(tf.truncated_normal([500, 10], stddev=0.1))
+```
+This layer maps the 500x1 feature vector into 10x1 vector that corresponds to output classes 0~9. Parameters of the layer are initialized as truncated normal random variables whose mean is 0 and standard deviation is 0.1.
+```
+b_fc2 = tf.Variable(tf.constant(0.1, shape=[10]))
+```
+This is a 10x1 bias vector of the output layer. We initialize it with a contant 0.1.
+```
+y_conv = tf.nn.softmax(tf.matmul(h_fc1, W_fc2) + b_fc2)
+```
+Finally, we compute the softmax output values after multiplying h_fc1 by W_fc2 and adding the bias.
+
 #### Addition...
 * Zero initialization
    * ```W_conv = tf.Variable(tf.zeros([5,5,1,30]))```
