@@ -28,11 +28,11 @@ sess = tf.Session()
 
 tf.Variable | tf.placeholder
 ------------|---------------
-to be initialized | don't to be initialized
+to be initialized | to do not be initialized
 weights/biases | train/test dataset
 is modified internally via session | is changed externally via feed_dic={}
 is modified by a predefined operators | is changed by a user preference
-global variable | local variable
+like global variable | like local variable
 
 * tf.Variable: have to define an initial value when declaring it
 * tf.placeholder: don't have to define an initial value and should be specified at run time with feed_dict argument inside Session.run
