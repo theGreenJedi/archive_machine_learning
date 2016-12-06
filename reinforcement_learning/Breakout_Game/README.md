@@ -1,17 +1,17 @@
 ﻿# Breakout Game
 We train an agent to play a simple version of Breakout. There are 25 bricks in 5 rows and 5 columns. At each time, the agent can take one of 5 actions to remove the bottom brick in one of 5 columns. Unlike the original Breakout, there is no ball and thus you don't need to worry about losing a ball. A reward of 1 is given for removing a brick.
 
-## DQN_breakout1
+## breakout1
 ![](./image/environment1.png)
 Figure. Example of state transition in environment 1. <br>
 In environment 1, if any one of 5 columns is cleared, then all the remaining bricks are removed and you get a reward equal to the number of removed bricks. Therefore, an optimal policy for this environment is to clear any one of 5 columns. 
 
-## DQN_breakout2
+## breakout2
 ![](./image/environment2.png)
 Figure. Example of state transition in environment 2. <br>
 In environment 2, if any one of 5 columns is cleared, then all the remaining bricks in the upper 4 rows are removed and you get a reward equal to the number of removed bricks. Therefore, an optimal policy for this environment is to clear any one of 5 columns and then remove the remaining 4 bricks at the bottom row.
 
-## DQN_breakout3
+## breakout3
 ![](./image/environment3.png)
 Figure. Example of state transition in environment 3. <br>
 In environment 3, if any one of 5 columns is cleared, then all the remaining bricks are removed and you get a reward equal to the number of removed bricks. Therefore, an optimal policy for this environment is to clear any two consecutive columns. 
@@ -24,7 +24,8 @@ In environment 3, if any one of 5 columns is cleared, then all the remaining bri
    * For feeding a state to the neural network in DQN, we use a matrix representation that is 5x5 matrix of 0’s and 1’s indicating the presence of each brick. A vector representation can be converted to an equivalent matrix representation by using the function “matrix_state” in “state_representation.py”.
    * For Q learning, we use a scalar representation, i.e., s=0,…,6^5−1, where s=0 means no bricks and s=6^5−1means all bricks are present. A vector representation can be converted to an equivalent scalar representation by using the function “scalar_state” in “project2_state_representation.py”.
    
+### DQN breakout1
 
 
-<br>
+### Acknowledgment
 > EE488C Special Topics in EE <Deep Learning and AlphaGo>, Fall 2016 & Information Theory & Machine Learning Lab, School of EE, KAIST & Wonseok Jeon and Sungik Choi (wonsjeon@kaist.ac.kr, si_choi@kaist.ac.kr)
