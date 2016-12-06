@@ -19,8 +19,8 @@ We can download these files: <br>
 1.```ilsvrc_2012_mean.npy``` which is the mean of ILSVRC Image dataset. It can be downloaded from [here](https://github.com/BVLC/caffe/blob/master/python/caffe/imagenet/ilsvrc_2012_mean.npy)
 <br>
 2.```bvlc_alexnet.npy``` as a numpy array. It can be downloaded from [here](http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/)
-
-And we need Caltech 101 dataset which can be downloaded as follows:
+<br>
+3. "Caltech 101 dataset" can be downloaded as follows:
 ```
 $ wget--no-check-certificate https://www.vision.caltech.edu/Image_Datasets/Caltech101/101_ObjectCategories.tar.gz
 $ tar xvzf101_ObjectCategories.tar.gz
