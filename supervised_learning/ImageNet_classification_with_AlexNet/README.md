@@ -5,7 +5,7 @@ This neural network was first proposed by Alex Krizhevsky, *et al.* [[1]](https:
 
 This code represents that how to classify an image using pre-trained AlexNet with ILSVRC 2012 dataset. *ILSVRC* (Imagenet Large Scale Visual Recognition Challenge) is an annual competition for image classification using many (~million) images in 1,000 categories. 
 
-[](./image/cat.png)
+![](./image/cat.jpg)
 
 In ```alexnet_classify.py```...<br>
 Since training the whole process with AlexNet requires very large resources and much time, we just load a weight set pre-trained by AlexNet. And We read an image, and perform image classification that outputs 5 most probable categories and their probabilities. 
