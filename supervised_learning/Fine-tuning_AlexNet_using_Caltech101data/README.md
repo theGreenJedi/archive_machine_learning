@@ -36,7 +36,28 @@ $ tar xvzf101_ObjectCategories.tar.gz
    * You can see the test accuracy is quite high, which is because there are only 10 categories and also because AlexNetwas already trained using 1,000 categories and you are only re-training the last layer.
 
 ## Code Details
-Related explanation is [here](https://github.com/gritmind/deep_learning_archieves/tree/master/supervised_learning/ImageNet_classification_with_AlexNet)
+```
+fan1 = math.sqrt(6.0 / (4096.0 + 10.0))
+fc8W = tf.Variable(tf.random_uniform([4096, 10], minval=-fan1, maxval=fan1))
+```
+We use Xavier initialization
+```
+train_step = opt.minimize(cross_entropy, var_list=[fc8W,fc8b])
+```
+We train the last fully-connected layer while fixing other layers. The variables that need to be optimized, i.e., the weight and bias of the last fully connected layer, are specified as ‘var_list’.
+```
+npy_save = {}
+npy_save[0] = fc8W.eval()
+npy_save[1] = fc8b.eval()
+np.save(output_weight_filename, npy_save)
+```
+We save the parameters of the last fully-connected layer as a numpy file.
+
+<br>
+Other explanation is [here](https://github.com/gritmind/deep_learning_archieves/tree/master/supervised_learning/ImageNet_classification_with_AlexNet)
+
+
+
 
 
 ## Additional work
