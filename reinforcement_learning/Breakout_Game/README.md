@@ -25,6 +25,16 @@ In environment 3, if any one of 5 columns is cleared, then all the remaining bri
    * For Q learning, we use a scalar representation, i.e., s=0,…,6^5−1, where s=0 means no bricks and s=6^5−1means all bricks are present. A vector representation can be converted to an equivalent scalar representation by using the function “scalar_state” in “project2_state_representation.py”.
    
 ### DQN breakout1
+The neural network has only one layer, but it can learn to play optimally with only **10** episodes. It is possible for such a simple neural network to produce an optimal policy.
+
+### DQN breakout2
+The neural network still has only one layer. It takes about **5,000 ~ 10,000** episodes to train the network. More episodes are needed than breakout1 since this game is more complicated.
+
+### DQN breakout3
+The neural network still has only one layer. It now takes about **20,000** episodes to train the network.
+
+## Code details of Deep Q network 
+
 
 
 ### Acknowledgment
