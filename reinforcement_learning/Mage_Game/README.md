@@ -1,14 +1,14 @@
 # Maze Game
 
-## Task1 (simple environment)
-In the task1, we build a 5 x 5 maze with **randomly constructed walls (p=0.2)** and understand how Q-learning works. The maze environment has 25 states, one for each cell, and the agent can perform one of four actions (up, down, left, right) at each state. If a movement is blocked by a wall, then the agent will stay in the current cell. States are numbered from 0 to 24. The starting state is state 0 and the terminal state is state 24. 
+## Maze1 (simple environment)
+In the maze1, we build a 5 x 5 maze with **randomly constructed walls (p=0.2)** and understand how Q-learning works. The maze environment has 25 states, one for each cell, and the agent can perform one of four actions (up, down, left, right) at each state. If a movement is blocked by a wall, then the agent will stay in the current cell. States are numbered from 0 to 24. The starting state is state 0 and the terminal state is state 24. 
 
 ![](./image/maze_environment.PNG)
 
 The goal of the agent is to reach the terminal state. When the agent reaches the terminal state, the agent gets a reward of 1 and the episode ends.
 
 
-## Task2 (complex environment)
+## Maze2 (complex environment)
 The starting state should be the left bottom corner "S" and the terminal state should be the right bottom corner "T". The 3 red cells in Fig. should give a reward of -100 whenever any of them is visited. When the agent reaches the terminal state, a reward of one should be given.
 
 ![](./image/maze_environment_task2.PNG)
@@ -23,7 +23,7 @@ Q-learning will choose the shortest but more dangerous path "A" and Sarsa will c
 * since SARSA want to find safe path (long path), the number of episodes for SARSA is bigger than Q-learning
 * when the episodes are fully enough we can action scores from all states are well optimized 
 
-### Learning Algorithm for task2
+### Learning Algorithm for maze2
 
 Q-learning | SARSA
 -----------|---------
