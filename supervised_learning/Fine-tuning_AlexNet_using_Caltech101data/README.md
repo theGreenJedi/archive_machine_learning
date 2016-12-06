@@ -42,7 +42,7 @@ We use different optimizers, compare them and the selected optimizers are as fol
    * Adam
 
 There are two kinds of experiment. First, I compare results on basis of methods. Second, I compare the results on basis of parameters of each method. The modified code is only optimizer function part.
-The detail stroy is [here](https://1drv.ms/w/s!AllPqyV9kKUrgX92dNlz7PXWKKjk)
+The detail story is [here](https://1drv.ms/w/s!AllPqyV9kKUrgX92dNlz7PXWKKjk)
 
 
 ## Acknowledgement
