@@ -19,6 +19,7 @@ Since training the whole process with AlexNet requires very large resources and 
    * the shape of cropped and loaded image is (10, 227, 227, 3)
 3. Subtract mean to the result of 2
    * subtracting the dataset mean serves to "center" the data
+   * we load ```ilsvrc_2012_mean.npy``` which is the mean of ILSVRC Image dataset
    * this is a kind of normalization. It helps for a model to have good local optimums. 
    * since the weights of AlexNet are trained given data which subtracted by mean, we also subtract mean to test data (=cat)
 4. Load a weight set pre-trained by AlexNet
@@ -28,8 +29,10 @@ Since training the whole process with AlexNet requires very large resources and 
 6. Evaluate the AlexNet
    * we don't need to train the model
    
+## Detail
+
+
    
-   
-<br>
+## Acknowledgement
 > EE488C Special Topics in EE Deep Learning and AlphaGo, Fall 2016
 
