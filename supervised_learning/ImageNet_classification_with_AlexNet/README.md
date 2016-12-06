@@ -10,7 +10,7 @@ This code represents that how to classify an image using pre-trained AlexNet wit
 In ```alexnet_classify.py```...<br>
 Since training the whole process with AlexNet requires very large resources and much time, we just load a weight set pre-trained by AlexNet. And We read an image, and perform image classification that outputs 5 most probable categories and their probabilities. 
 
-## Brief description of code
+## Code Brief descriptions
 1. Load an image 'cat'
    * we load a test image 'cat.jpg' and resize it to 256x256. If the image is not RGB format, then we convert it to an RGB image.
    * the shape of loaded data is (256, 256, 3)
@@ -30,7 +30,7 @@ Since training the whole process with AlexNet requires very large resources and 
    * we don't need to train the model
 
    
-## Detail
+## Code Details
 ```
 for x in net_data:
     exec ("%s = %s" % (str(x) + "W", "tf.Variable(net_data[x][0])"))
