@@ -15,7 +15,7 @@ The starting state should be the left bottom corner "S" and the terminal state s
 
 Q-learning will choose the shortest but more dangerous path "A" and Sarsa will choose a longer but safer path "B" at the end of training.
 
-According to some experients for task2, I found something (including my guess)
+#### According to some experiments for task2, I found something (including my guess)
 * the parameter alpha 0.5 for Q-learning seems better than 0.1 for finding 'correct path' as soon as possible 
 * the parameter alpha 0.1 for SARSA seems better than 0.5 for finding 'correct path' as soon as possible
 * the optimal number of episodes (smallest) for Q-learning is 9 (20000 in the code)
