@@ -33,9 +33,81 @@ The neural network still has only one layer. It takes about **5,000 ~ 10,000** e
 ### DQN breakout3
 The neural network still has only one layer. It now takes about **20,000** episodes to train the network.
 
+<br>
 ## Code details of Deep Q network 
+Basic algorithm is the same as in [[3]](http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html). We use an online network and a target network. Initially, they are both identical copies of each other. Then, by using the experiences of the agent, the online network is updated. Then, after some iterations, the target network is updated by copying the parameters of the online network to the target network. In the DQN, we can use experience replay as done in [[3]](http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html). We store the state, action, new state and reward in the memory and sample them in batch when we need parameter update. Replay memory size is set to be big enough to store the whole experience during training.
+
+### 1. Q network architecture (def DeepQNetwork)
+Q network consists of single fully connected layer, where we get the image of the state as a matrix and output the Q values for all possible actions.
+```
+weights1 = tf.get_variable("weights1", [5 * 5, 5], initializer = tf.random_normal_initializer())
+biases1 = tf.get_variable("biases1", [5], initializer = tf.random_normal_initializer())
+```
+These are the weights and biases for the network
+```
+in1 = tf.reshape(state, [-1, 5*5])   # It is 'input Layer'
+```
+This reshapes the state to a length-25 vector. -1 means undecided, which will be automatically set later to be equal to the batch size when you feed data to the neural network.
+```
+return tf.matmul(in1, weights1) + biases1
+```
+This defines the output Q values without activation function.
+```
+QN, state_dim= DeepQNetwork, [None, 5, 5]
+state_representation= matrix_state
+```
+We set the Q network and the input state dimension as 5 x 5. ‘state_representation’ function converts the state vector to a matrix form as explained before.
+
+### 2. Placeholder and optimizer design
+We use five placeholders S,A,R,Sn, and T for current state, action, reward, next state, and indicator for episode termination, respectively. The shape of each placeholder is set properly. [None] means unspecified, which will be set later to match the batch size.
+```
+online_Q= QN(S)
+target_Q= QN(Sn)
+```
+This specifies ‘online_Q’ is the output of the online network with input ‘S’.
+This specifies ‘target_Q’ is the output of the target network with input ‘Sn’.
+```
+online_net_variables= tf.get_collection(tf.GraphKeys.VARIABLES, scope = "online_net")
+target_net_variables= tf.get_collection(tf.GraphKeys.VARIABLES, scope = "target_net")
+```
+We gather the variables such as weights and biases that contribute to the update of online_Qand target_Q.
+```
+Y_targets= R + gamma * tf.mul(T, tf.reduce_max(target_Q, 1))
+```
+This corresponds to the R+max(Q(sn,:)) in the Q-learning. ‘T’ is multiplied since we only need to have ‘R’ if ‘Sn’ is a terminal state.
+```
+Y_onlines= tf.reduce_sum(tf.mul(online_Q, A), 1)
+```
+This extracts the Q value for the current state and action.
+```
+loss = tf.reduce_mean(tf.square(tf.sub(Y_targets, Y_onlines)))
+```
+This is the loss function defined as E[(Q(s,a) - (R+gamma x max(Q(s',:)))^2]
+```
+optimizer = tf.train.RMSPropOptimizer(alpha).minimize(loss, var_list= online_net_variables).
+```
+Finally, we train the weights and biases of the neural network to minimize the loss. RMSPropOptimizeris a well-known optimize, which is also used in DQN in [[3]](http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html). This optimization is performed by ‘online_net_update’ function.
+```
+target_net_update= [target_net_variables[i].assign(online_net_variables[i]) for i in range(len(online_net_variables))]
+```
+This updates the target network by copying the variables of the online network.
+
+### 3. Main training algorithm
+Training is done similarly as in [[3]](http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html). Here, we explain things that are specific to our implementation. ‘replay_memory’ and ‘minibatch’ are initialized to be lists with 5 empty lists. online_net_variablesand target_net_variablesare initialized.
+```
+epsilon = 1 -float(i_episode) / (num_episodes–1)
+```
+We linearly decrease epsilon from 1 in the first episode to 0 in the final episode.
+<br>
+For each episode, we initialize the state ‘S(underbar)’, indicator of the terminal state ‘T(underbar)’, and time stamp ‘time_episode_start’.
+```
+Q_ = sess.run(online_Q, feed_dict= {S: state_representation([S_])})
+```
+Obtain Q values for the current state 'S(underbar)' using the online network. 
+<br>
+After we take action and observe the new state, reward, and indicator for a terminal state, we store the observed values into the replay memory. Then, we ‘num_sampling’ random samples from the replay_memoryand train the Q network. If ‘replay’ variable is set to 0, only the most recent observed sample is used for training. if target_net_update_counter< target_net_update_period… sess.run(target_net_update)
+This is for updating the target network.
 
 
-
-### Acknowledgment
+## Acknowledgment
 > EE488C Special Topics in EE <Deep Learning and AlphaGo>, Fall 2016 & Information Theory & Machine Learning Lab, School of EE, KAIST & Wonseok Jeon and Sungik Choi (wonsjeon@kaist.ac.kr, si_choi@kaist.ac.kr)
