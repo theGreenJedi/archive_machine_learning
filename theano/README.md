@@ -31,18 +31,18 @@ Theano
 <br>
 Python: we have to manually differentiate by ourselves
 ```
-def diff(x):
-   y = 4*x + 5
-   return y
-diff(7)
+  def diff(x):
+     y = 4*x + 5
+     return y
+  diff(7)
 ```
 Theano: a derivative is automatically calculated by Symbolic differential operation
 ```
-x = T.scalar()
-y = 5*x^2 + 20
-y_prime = T.grad(y, x) # Symbolic differential operation
-diff = theano.function([x], y_prime)
-diff(7)
+  x = T.scalar()
+  y = 5*x^2 + 20
+  y_prime = T.grad(y, x) # Symbolic differential operation
+  diff = theano.function([x], y_prime)
+  diff(7)
 ```
 We easily implement complex 'back-propagation' by using Symbolic differential operation
 
