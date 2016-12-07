@@ -1,11 +1,9 @@
 ### Session and Graph
-#### Computational Graph
-Tensorflow programs are sturcted into a construction phase, which assembles a graph, and an execution phase that uses a session to execute operations in the graph.
-#### Launching the graph in a session
-After we build a construction phase, we launch a graph by creating a session object.
-    
-   * Construction -> Launching
-    
+1. Computational Graph
+   * Tensorflow programs are sturcted into a construction phase, which assembles a graph, and an execution phase that uses a session to execute operations in the graph.
+
+2. Launching the graph in a session
+   * After we build a construction phase, we launch a graph by creating a session object. (Construction -> Launching)
 
 <br>
 ### Variable type of tensorflow diagram
