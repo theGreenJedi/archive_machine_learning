@@ -1,9 +1,9 @@
 # Theano
-
+* made by [LISA Lab](http://deeplearning.net/software/theano/)
+* It is based on Python, which enable to interwork with other useful python packages such as numpy, scipy, matplotlib, ipython and so on
 * Symbolic computation leads the program to be concise and fast
 * Since symbloic computation can do differentiation, we don't need implement 'Back-propagation' algorithm
 * Can use it CPU and GPU in the same code
-* It is based on Python
 
 ## Symbolic Variable
 #### 1. Example of Symbolic operation
@@ -54,7 +54,7 @@ numpy_array = shared_var.get_value()
 Data defined as a shared variable can come in and out CPU_RAM and GPU_VRAM
 So, when we want to process data in GPU mode, we define the data as the shared variable
 #### 2. Givens: to apply shared data to symbolic variable 
-```ex) y = 2*x and we want to apply x to 7``` 
+:```ex) y = 2*x and we want to apply x to 7``` 
 ```
 # Method 1
   compute = theano.function([x], 2*x);
@@ -70,6 +70,34 @@ x_val = theano.shared(0)
 increase = theano.function([], x_val, updates=(x_val, x_val+1))
 increase() # When executing this line -> x_val increases by 1 in GPU-VRAM (Don't need RAM)
 ```
+<br>
+
+# Keras
+* It is deep learning framework based on Theano. [here](http://keras.io)
+* Offer various deep learning models and optimizers
+* We can construct deep learning models just like LEGO Block (similar to Caffe, Torch)
+* It is easy to add new models because of theano
+* we can save trained model by HDF5 or Json format.
+
+### Example of Multi-layer Perceptron 
+The model explanation:
+   * 20 nodes in input layer
+   * 64 nodes in first hidden layer
+   * 64 nodes in second hidden layer
+   * 2 nodes in output layer
+   * use dropout and stochastic gradient descent optimizer
+```
+  model = Sequential()
+  model.add(Dense(64, input_dim=20, init='uniform', activation='tanh'))
+  model.add(Dropout(0.5))
+  model.add(Dense(64, init='uniform', activation='tanh'))
+  model.add(Dropout(0.5))
+  model.add(Dense(2, init='uniform', activation='softmax'))
+
+  sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
+  model.compile(loss='mean_squared_error', optimizer=sgd)
+```
+
 
 
 
