@@ -6,7 +6,7 @@
 * It is based on Python
 
 ## Symbolic operation
-#### Example of Symbolic operation
+#### 1. Example of Symbolic operation
 ```ex) y = 5x^2 + 20```
 <br>
 <br>
@@ -24,8 +24,7 @@ Theano
   compute = theano.function([x], y)   # Compile
   compute(7)
 ```
-<br>
-#### Example of Symbolic differential operation
+#### 2. Example of Symbolic differential operation
 ```ex) y = 5x^2 + 20```
 <br>
 <br>
