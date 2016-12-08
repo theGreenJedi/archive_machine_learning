@@ -5,7 +5,7 @@
 * Can use it CPU and GPU in the same code
 * It is based on Python
 
-## Symbolic operation
+## Symbolic Variable
 #### 1. Example of Symbolic operation
 ```ex) y = 5x^2 + 20```
 <br>
@@ -45,6 +45,33 @@ Theano: a derivative is automatically calculated by Symbolic differential operat
 ```
 We easily implement complex 'back-propagation' by using Symbolic differential operation
 
+## Shared Variable
+#### 1. Shared: to move data from CPU-RAM to GPU-VRAM
+```
+shared_var = theano.shared(numpy_array)
+numpy_array = shared_var.get_value()
+```
+Data defined as a shared variable can come in and out CPU_RAM and GPU_VRAM
+So, when we want to process data in GPU mode, we define the data as the shared variable
+#### 2. Givens: to apply shared data to symbolic variable 
+```ex) y = 2*x and we want to apply x to 7``` 
+```
+# Method 1
+  compute = theano.function([x], 2*x);
+  compute(7) # When executing this line -> RAM -> VRAM -> GPU Operation
+# Method 2
+  x_value = theano.shared(7)
+  compute = theano.function([], 2*x, givens=[x, x_value]) # When executing this line -> VRAM -> GPU Operation
+  compute()
+```
+#### 3. Updates: to modify shared data by using results of GPU Operation
+```
+x_val = theano.shared(0)
+increase = theano.function([], x_val, updates=(x_val, x_val+1))
+increase() # When executing this line -> x_val increases by 1 in GPU-VRAM (Don't need RAM)
+```
 
 
 
+## Acknowledgement 
+> [Biointelligence Laboratory](http://bi.snu.ac.kr) & Department of Computer Science and Engineering & Seoul National University & Eun-Sol Kim
