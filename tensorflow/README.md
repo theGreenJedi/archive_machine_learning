@@ -1,3 +1,21 @@
+# Tensorflow
+   * It is based on Python, which enable to interwork other python packages
+   * Symbolic implementation 
+      * fast and easy to implement
+      * can do differertiation so, we don't need implement 'backpropagation'
+   * Same code for both CPU and GPU
+   * Computational Graph Abstraction
+   * compiled faster than Theano
+   * TensorBoard Visualization
+   * parallel data and models 
+   
+### Basic Usage
+   * Represents computations as graphs
+   * Executes graphs in the context of sessions
+   * Represents data as tensors
+   * Maintains state with variables
+   * Uses feeds and fetches to get data into and out of arbitrary operations
+
 ### Session and Graph
 1. Computational Graph
    * Tensorflow programs are sturcted into a construction phase, which assembles a graph, and an execution phase that uses a session to execute operations in the graph.
@@ -52,3 +70,4 @@ like global variable | like local variable
 
 <br>
 > This resource is based on EE488C Special Topics in EE <Deep Learning and AlphaGo> Fall 2016, School of EE, KAIST
+> [Biointelligence Laboratory](http://bi.snu.ac.kr) & Department of Computer Science and Engineering & Seoul National University & Eun-Sol Kim
