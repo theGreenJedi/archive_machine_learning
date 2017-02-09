@@ -18,7 +18,7 @@ def get_data(split_sequences=False):
     Ytrain = []
     currentX = []
     currentY = []
-    for line in open('ner.txt'):
+    for line in open('semantic_ann_data.txt'):
         line = line.rstrip()
         if line:
             r = line.split()
